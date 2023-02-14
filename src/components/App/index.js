@@ -1,9 +1,15 @@
 import React from "react";
+import { UseState } from "../UseState";
+import {ClassState} from "../ClassState";
+import "../../styles/App.css";
 
 function App(){
 
     return(
-        <p>Hola chikorita</p>
+        <div className="App">
+            <UseState></UseState>
+            <ClassState></ClassState>
+        </div>
     )
 }
 

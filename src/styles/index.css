@@ -1,3 +1,6 @@
+:root{
+    --primary-color: rgba(212, 86, 86, 0.966);
+}
 *{
     box-sizing: border-box;
     padding: 0;
@@ -6,3 +9,7 @@
 body{
     background-color: aquamarine;
 }
+#root{
+    width: 100%;
+}
+

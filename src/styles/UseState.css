@@ -1,0 +1,6 @@
+.UseState{
+    margin-bottom: 40px;
+}
+.UseState h2{
+    color: var(--primary-color);
+}
