@@ -1,6 +1,6 @@
 import React from "react";
 import {Loading} from "../Loading"
-import "../../styles/UseState.css";
+import "../../styles/ClassState.css";
 
 const SECURITY_CODE = "paradigma";
 
@@ -33,12 +33,12 @@ class ClassState extends React.Component{
 
         return(
             <div className="ClassState">
-                <h2>Elimina ClassState</h2>
-                <p>Por favor, escribe el código de seguridad</p>
-                <input value={value} placeholder="Código de seguridad" onChange={(event)=>{
+                <h2 className="ClassState__title">Elimina ClassState</h2>
+                <p className="ClassState__text">Por favor, escribe el código de seguridad</p>
+                <input className="ClassState__input" value={value} placeholder="Código de seguridad" onChange={(event)=>{
                     this.setState({value: event.target.value})
                 }}></input>
-                <button onClick={()=> this.setState(
+                <button className="ClassState__btn-check" onClick={()=> this.setState(
                     {
                         loading: !this.state.loading,
                         error:false,
