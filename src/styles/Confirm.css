@@ -1,25 +1,18 @@
-.UseState{
+.Confirm{
     width: 100%;
     height: 100%;
     padding-top: 80px;
     border-bottom:1px solid black ;
 }
-
-.UseState__title{
-    margin-bottom: 8px;
-    font-size: 40px;
-    color: var(--primary-color);
-}
-.UseState__text{
+.Confirm__text{
     margin-bottom: 8px;
 }
-.UseState__input{
+.Confirm__btn-confirm{
+    margin-left: 4px;
     padding:4px 8px 4px 8px;
-    margin-right: 4px;
-    
+    font-weight: 400;
 }
-
-.UseState__btn-check{
+.Confirm__btn-delete{
     padding:4px 8px 4px 8px;
     font-weight: 400;
 }

@@ -7,7 +7,7 @@
 
 .ClassState__title{
     margin-bottom: 8px;
-    font-weight: 700;
+    font-size: 40px;
     color: var(--primary-color);
 }
 .ClassState__text{
@@ -16,7 +16,6 @@
 .ClassState__input{
     padding:4px 8px 4px 8px;
     margin-right: 4px;
-    font-weight: 700;
 }
 
 .ClassState__btn-check{
