@@ -22,7 +22,7 @@ function reducerObject(state, payload){
             loading: !state.loading,
             error: false
         },
-        "Confirm":{
+        "Back":{
             ...state,
             confirmed: false,
             value: ""

@@ -18,6 +18,14 @@ function UseState(){
         }
     ); */
 
+     //Haciendo uso de formas declarativas
+    //Declaramos eventos
+   /*  const onConfirmed = ()=> setState({loading:false, confirmed:true});
+    const onError = ()=> setState({loading:false, error:true}); */
+    //Declaramos manejadores para los eventos de botones
+    /* const handleInput = (event)=> setState({value:event.target.value});
+    const handleCheck= ()=> {setState({loading:!state.loading, error: false})}; */
+
     const initialState = {
         value:"",
         error: false,
@@ -26,21 +34,26 @@ function UseState(){
         confirmed: false,
     }
 
+    //ActionsType
+    const actionsTypes = {
+        confirmed : "Confirmed",
+        error: "Error",
+        write: "Write",
+        check: "Check",
+        back: "Back",
+        delete: "Delete",
+        recovery:"Recovery"
+    }
+
+    //Uso del useReducer
     const [state, dispatch] = React.useReducer(reducer, initialState);
-  
-    //Haciendo uso de formas declarativas
+
     //Declaramos eventos
-   /*  const onConfirmed = ()=> setState({loading:false, confirmed:true});
-    const onError = ()=> setState({loading:false, error:true}); */
+    const onConfirmed = ()=> dispatch({type: actionsTypes.confirmed});
+    const onError = ()=> dispatch({type: actionsTypes.error});
     //Declaramos manejadores para los eventos de botones
-    /* const handleInput = (event)=> setState({value:event.target.value});
-    const handleCheck= ()=> {setState({loading:!state.loading, error: false})}; */
-
-    const onConfirmed = ()=> dispatch({type:"Confirmed"});
-    const onError = ()=> dispatch({type:"Error"});
-
-    const handleInput = (event)=> dispatch({type:"Write", payload:event.target.value});
-    const handleCheck= ()=> {dispatch({type:"Check"})}; 
+    const handleInput = (event)=> dispatch({type: actionsTypes.write, payload:event.target.value});
+    const handleCheck= ()=> {dispatch({type: actionsTypes.check})}; 
 
     //Emulando respuesta del backend
     React.useEffect(()=>{
@@ -54,7 +67,6 @@ function UseState(){
                 console.log("Terminando validación");
             }, 3000);
         }
-    
     }, [state.loading]);
 
     //Validaciones para renderizar
@@ -65,9 +77,10 @@ function UseState(){
                 <p className="UseState__text">Por favor, escribe el código de seguridad</p>
                 {state.error && <p>Error: el código es incorrecto</p>}
                 {state.loading && <p>Cargando</p>}
-                <input className="UseState__input" value={state.value} placeholder="Código de seguridad" onChange={(event)=> handleInput(event)}>
+                <input className="UseState__input" value={state.value} 
+                    placeholder="Código de seguridad" onChange={handleInput}>
                 </input>
-                <button className="UseState__btn-check" onClick={()=>{handleCheck()}}>
+                <button className="UseState__btn-check" onClick={handleCheck}>
                     Comprobar
                 </button>
             </div>
@@ -75,12 +88,12 @@ function UseState(){
     }
     else if(!state.deleted && state.confirmed){
         return(
-            <Confirm dispatch={dispatch}/>
+            <Confirm actionsTypes={actionsTypes} dispatch={dispatch}/>
         )
     }
     else{
         return(
-           <Delete dispatch={dispatch}/>
+           <Delete actionsTypes={actionsTypes} dispatch={dispatch}/>
         )
     } 
 
