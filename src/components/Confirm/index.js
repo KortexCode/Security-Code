@@ -3,8 +3,8 @@ import "../../styles/Confirm.css"
 
 function Confirm(props){
 
-    const handleDelete = ()=> props.setState({deleted:true});
-    const handleConfirm = ()=> props.setState({confirmed:false, value:""});
+    const handleDelete = ()=> props.dispatch({type:"Delete"});
+    const handleConfirm = ()=> props.dispatch({type:"Confirm"});
 
     return(
         <div className="Confirm">

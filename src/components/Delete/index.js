@@ -3,7 +3,7 @@ import "../../styles/Delete.css"
 
 function Delete(props){
 
-    const handleRecovery = ()=> props.setState({deleted:false, confirmed:false, value:""});
+    const handleRecovery = ()=> props.dispatch({type:"Recovery"});
 
     return(
         <div className="Delete">

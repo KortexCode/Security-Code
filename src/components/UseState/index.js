@@ -1,5 +1,6 @@
 import React from "react";
 import {useComposeState} from "../../hooks/useComposeState.js";
+import {reducer} from "../../hooks/useReducer.js";
 import {Confirm} from "../Confirm"
 import {Delete} from "../Delete"
 import "../../styles/UseState.css";
@@ -7,7 +8,7 @@ const SECURITY_CODE = "paradigma";
 
 function UseState(){
     //Hacemos uso de un custom hook y le enviamos los estados de nuestro componente
-    const {state, setState} = useComposeState(
+  /*   const {state, setState} = useComposeState(
         {
             value:"",
             error: false,
@@ -15,14 +16,31 @@ function UseState(){
             deleted: false,
             confirmed: false,
         }
-    );
+    ); */
+
+    const initialState = {
+        value:"",
+        error: false,
+        loading: false,
+        deleted: false,
+        confirmed: false,
+    }
+
+    const [state, dispatch] = React.useReducer(reducer, initialState);
+  
     //Haciendo uso de formas declarativas
     //Declaramos eventos
-    const onConfirmed = ()=> setState({loading:false, confirmed:true});
-    const onError = ()=> setState({loading:false, error:true});
+   /*  const onConfirmed = ()=> setState({loading:false, confirmed:true});
+    const onError = ()=> setState({loading:false, error:true}); */
     //Declaramos manejadores para los eventos de botones
-    const handleInput = (event)=> setState({value:event.target.value});
-    const handleCheck= ()=> {setState({loading:!state.loading, error: false})};
+    /* const handleInput = (event)=> setState({value:event.target.value});
+    const handleCheck= ()=> {setState({loading:!state.loading, error: false})}; */
+
+    const onConfirmed = ()=> dispatch({type:"Confirmed"});
+    const onError = ()=> dispatch({type:"Error"});
+
+    const handleInput = (event)=> dispatch({type:"Write", payload:event.target.value});
+    const handleCheck= ()=> {dispatch({type:"Check"})}; 
 
     //Emulando respuesta del backend
     React.useEffect(()=>{
@@ -57,14 +75,16 @@ function UseState(){
     }
     else if(!state.deleted && state.confirmed){
         return(
-            <Confirm setState={setState}/>
+            <Confirm dispatch={dispatch}/>
         )
     }
     else{
         return(
-           <Delete setState={setState}/>
+           <Delete dispatch={dispatch}/>
         )
     } 
+
+   
 }
 
 export {UseState}
